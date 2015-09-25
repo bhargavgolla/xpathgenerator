@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Bhargav Golla">
+
+    <title>XPath Generator</title>
+</head>
+
+<body>
+    <textarea id="xmltextarea" cols="100" rows="50">
+<?xml version="1.0" encoding="UTF-8"?>
+<distributionRequest>
+	<distribution>
+		<channelID>EBAY_US</channelID>
+		<SKU>MIP_SKU_14</SKU>
+		<listingDetails>
+			<shippingPolicyName>FreeEconomy</shippingPolicyName> <!-- Replace business policy names with your seller's business policy names. -->
+			<shippingCostOverrides>
+				<shippingCost>1.00</shippingCost>
+				<additionalCost>1.00</additionalCost>
+				<surcharge></surcharge>
+				<priority>1</priority>
+				<shippingServiceType>Domestic</shippingServiceType>
+			</shippingCostOverrides>
+			<maxQuantityPerBuyer>5</maxQuantityPerBuyer>
+			<paymentPolicyName>PayPal</paymentPolicyName> <!-- Replace business policy names with your seller's business policy names. -->
+			<returnPolicyName>NoReturns</returnPolicyName> <!-- Replace business policy names with your seller's business policy names. -->
+			<pricingDetails>
+				<listPrice>24.00</listPrice>
+			</pricingDetails>
+			<eBayNowEligible>false</eBayNowEligible>
+			<pickupInStoreEligible>false</pickupInStoreEligible>
+			<applyTax>false</applyTax>
+		</listingDetails>
+	</distribution>
+	<distribution>
+		<channelID>EBAY_US</channelID>
+		<SKU>MIP_SKU_15</SKU>
+		<listingDetails>
+			<shippingPolicyName>FreeEconomy</shippingPolicyName> <!-- Replace business policy names with your seller's business policy names. -->
+			<shippingCostOverrides>
+				<shippingCost>1.00</shippingCost>
+				<additionalCost>1.00</additionalCost>
+				<surcharge></surcharge>
+				<priority>1</priority>
+				<shippingServiceType>Domestic</shippingServiceType>
+			</shippingCostOverrides>
+			<maxQuantityPerBuyer>5</maxQuantityPerBuyer>
+			<paymentPolicyName>PayPal</paymentPolicyName> <!-- Replace business policy names with your seller's business policy names. -->
+			<returnPolicyName>NoReturns</returnPolicyName> <!-- Replace business policy names with your seller's business policy names. -->
+			<pricingDetails>
+				<listPrice>25.00</listPrice>
+			</pricingDetails>
+			<eBayNowEligible>false</eBayNowEligible>
+			<pickupInStoreEligible>false</pickupInStoreEligible>
+			<applyTax>false</applyTax>
+		</listingDetails>
+	</distribution>
+</distributionRequest>
+    </textarea>
+    <p id="xpath"></p>
+    <script src="sax.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
