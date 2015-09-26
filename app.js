@@ -21,9 +21,6 @@ function getXpath(xmlText, tagData) {
     }
 
     path.push(tag.name);
-    if (parser.position == tagData.nodeEnd + 1) {
-      console.log('Found End Tag at ' + parser.position);
-    }
   };
 
   parser.write(xmlText).end();
@@ -86,7 +83,6 @@ xmlTextArea.addEventListener('click', function() {
   }
 
   var selectedNodeData = getTextAtCursor(this.value, this.selectionStart);
-  console.log('Selection Start: ' + this.selectionStart);
   var path = getXpath(this.value, selectedNodeData);
 
   if (path.length == 0) {
