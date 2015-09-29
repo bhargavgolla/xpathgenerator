@@ -8,6 +8,7 @@
     <meta name="author" content="Bhargav Golla">
 
     <title>XPath Generator</title>
+    <link type="text/css" href="style.css" media="all" rel="stylesheet"/>
 </head>
 
 <body>
@@ -63,7 +64,13 @@
 </distributionRequest>
     </textarea>
     <p id="xpath"></p>
+    <section class="layout">
+        <div class="xpath-evaluator">
+            <div id="xml_display" class="structure"></div>
+        </div>
+    </section>
     <script src="sax.js"></script>
+    <script src="defiant-latest.min.js"></script>
     <script src="app.js"></script>
 </body>
 </html>
