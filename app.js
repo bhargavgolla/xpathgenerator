@@ -2,6 +2,7 @@ var xmlTextArea = document.getElementById('xmltextarea');
 var xmlPathArea = document.getElementById('xpath');
 var xmlDisplayArea = document.getElementById('xml_display');
 var xmlData;
+var uniq;
 
 function simpleId() {
   var s = 'abcdefghijklmnopqrstuvwxyz';
@@ -21,10 +22,12 @@ function simpleId() {
 function searchXpath(xpath) {
   var doc = Defiant.xmlFromString(xmlTextArea.value);
   var xres = Defiant.node.selectNodes(doc, xpath);
-  var uniq = simpleId();
   var i = 0;
   var il = xres.length;
   var ll;
+
+  uniq = simpleId();
+
   for (; i < il; i++) {
     if (xres[i].ownerDocument.documentElement === xres[i]) continue;
     switch (xres[i].nodeType) {
@@ -129,7 +132,7 @@ function getXpath(xmlText, tagData) {
   var path = [];
 
   parser.onclosetag = function(tag) {
-    if (parser.position > tagData.nodeEnd + 1) {
+    if (parser.position > tagData.nodeEnd) {
       return;
     }
 

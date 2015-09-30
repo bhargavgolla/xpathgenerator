@@ -160,8 +160,6 @@ nav a span {
 section.layout {
   background: #ffffff;
   position: relative;
-  min-height: 1000px;
-  margin-left: 48px;
   padding: 35px 0px 30px 50px;
   z-index: 2;
   box-shadow: -5px 0px 11px rgba(0, 0, 0, 0.35);
