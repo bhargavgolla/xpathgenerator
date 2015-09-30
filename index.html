@@ -12,60 +12,41 @@
 </head>
 
 <body>
-    <textarea id="xmltextarea" cols="100" rows="50">
-<?xml version="1.0" encoding="UTF-8"?>
-<distributionRequest>
-	<distribution>
-		<channelID>EBAY_US</channelID>
-		<SKU>MIP_SKU_14</SKU>
-		<listingDetails>
-			<shippingPolicyName>FreeEconomy</shippingPolicyName> <!-- Replace business policy names with your seller's business policy names. -->
-			<shippingCostOverrides>
-				<shippingCost>1.00</shippingCost>
-				<additionalCost>1.00</additionalCost>
-				<surcharge></surcharge>
-				<priority>1</priority>
-				<shippingServiceType>Domestic</shippingServiceType>
-			</shippingCostOverrides>
-			<maxQuantityPerBuyer>5</maxQuantityPerBuyer>
-			<paymentPolicyName>PayPal</paymentPolicyName> <!-- Replace business policy names with your seller's business policy names. -->
-			<returnPolicyName>NoReturns</returnPolicyName> <!-- Replace business policy names with your seller's business policy names. -->
-			<pricingDetails>
-				<listPrice>24.00</listPrice>
-			</pricingDetails>
-			<eBayNowEligible>false</eBayNowEligible>
-			<pickupInStoreEligible>false</pickupInStoreEligible>
-			<applyTax>false</applyTax>
-		</listingDetails>
-	</distribution>
-	<distribution>
-		<channelID>EBAY_US</channelID>
-		<SKU>MIP_SKU_15</SKU>
-		<listingDetails>
-			<shippingPolicyName>FreeEconomy</shippingPolicyName> <!-- Replace business policy names with your seller's business policy names. -->
-			<shippingCostOverrides>
-				<shippingCost>1.00</shippingCost>
-				<additionalCost>1.00</additionalCost>
-				<surcharge></surcharge>
-				<priority>1</priority>
-				<shippingServiceType>Domestic</shippingServiceType>
-			</shippingCostOverrides>
-			<maxQuantityPerBuyer>5</maxQuantityPerBuyer>
-			<paymentPolicyName>PayPal</paymentPolicyName> <!-- Replace business policy names with your seller's business policy names. -->
-			<returnPolicyName>NoReturns</returnPolicyName> <!-- Replace business policy names with your seller's business policy names. -->
-			<pricingDetails>
-				<listPrice>25.00</listPrice>
-			</pricingDetails>
-			<eBayNowEligible>false</eBayNowEligible>
-			<pickupInStoreEligible>false</pickupInStoreEligible>
-			<applyTax>false</applyTax>
-		</listingDetails>
-	</distribution>
-</distributionRequest>
+  <section class="layout">
+    <textarea id="xmltextarea" cols="100" rows="50"><?xml version="1.0" encoding="utf-8"?>
+<d:data xmlns:d="defiant-namespace" d:mi="23">
+    <store d:mi="22">
+        <book price="12.99" d:price="Number" d:mi="4">
+            <title d:constr="String" d:mi="1">Sword of Honour</title>
+            <category d:constr="String" d:mi="2">fiction</category>
+            <author d:constr="String" d:mi="3">Evelyn Waugh</author>
+        </book>
+        <book price="8.99" d:price="Number" d:mi="9">
+            <title d:constr="String" d:mi="5">Moby Dick</title>
+            <category d:constr="String" d:mi="6">fiction</category>
+            <author d:constr="String" d:mi="7">Herman Melville</author>
+            <isbn d:constr="String" d:mi="8">0-553-21311-3</isbn>
+        </book>
+        <book price="8.95" d:price="Number" d:mi="13">
+            <title d:constr="String" d:mi="10">Sayings of the Century</title>
+            <category d:constr="String" d:mi="11">reference</category>
+            <author d:constr="String" d:mi="12">Nigel Rees</author>
+        </book>
+        <book price="22.99" d:price="Number" d:mi="18">
+            <title d:constr="String" d:mi="14">The Lord of the Rings</title>
+            <category d:constr="String" d:mi="15">fiction</category>
+            <author d:constr="String" d:mi="16">J. R. R. Tolkien</author>
+            <isbn d:constr="String" d:mi="17">0-395-19395-8</isbn>
+        </book>
+        <bicycle price="19.95" d:price="Number" d:mi="21">
+            <brand d:constr="String" d:mi="19">Cannondale</brand>
+            <color d:constr="String" d:mi="20">red</color>
+        </bicycle>
+    </store>
+</d:data>
     </textarea>
     <p id="xpath"></p>
-    <section class="layout">
-        <div class="xpath-evaluator">
+        <div class=" content xpath-evaluator">
             <div id="xml_display" class="structure"></div>
         </div>
     </section>
