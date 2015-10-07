@@ -1,6 +1,7 @@
 var xmlTextArea = document.getElementById('xmltextarea');
 var xmlPathArea = document.getElementById('xpath');
 var xmlDisplayArea = document.getElementById('xml_display');
+var xmlContent = document.getElementById('line-data');
 var xmlData;
 var uniq;
 
@@ -31,17 +32,17 @@ function searchXpath(xpath) {
   for (; i < il; i++) {
     if (xres[i].ownerDocument.documentElement === xres[i]) continue;
     switch (xres[i].nodeType) {
-    case 1: // type: node
-      ll = Defiant.node.prettyPrint(xres[i]).match(/\n/g);
-      ll = (ll === null) ? 0 : ll.length;
-      xres[i].setAttribute(uniq, ll);
-      break;
-    case 2: // type: attribute
-      xres[i].ownerElement.setAttribute(uniq, xres[i].name);
-      break;
-    case 3: // type: text
-      xres[i].parentNode.setAttribute(uniq, '#text');
-      break;
+      case 1: // type: node
+        ll = Defiant.node.prettyPrint(xres[i]).match(/\n/g);
+        ll = (ll === null) ? 0 : ll.length;
+        xres[i].setAttribute(uniq, ll);
+        break;
+      case 2: // type: attribute
+        xres[i].ownerElement.setAttribute(uniq, xres[i].name);
+        break;
+      case 3: // type: text
+        xres[i].parentNode.setAttribute(uniq, '#text');
+        break;
     }
   }
 
@@ -51,8 +52,8 @@ function searchXpath(xpath) {
 function renderXml(obj) {
   var doc = (obj.constructor === Object) ? JSON.toXML(obj) : obj;
   var str = Defiant.node.prettyPrint(doc)
-                        .replace(/</g, '&lt;')
-                        .replace(/>/g, '&gt;');
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
   var lines = str.split('\n');
   var gutter = '';
   var ld = '';
@@ -103,6 +104,9 @@ function renderXml(obj) {
         mlc = 'ml';
         ls = '<span class="ml">' + ls + '</span>';
       }
+
+      // Wrap plain text with spans if it is not highlighted
+      ls = ls.replace(/(<\/span><\/span>)(.*?)(<span class="nt"><span)/, '$1<span>$2</span>$3');
     }
 
     if (i > 0 && this.xpath === '//*') {
@@ -119,7 +123,7 @@ function renderXml(obj) {
 
   htm = '<table><tr>' +
     '<td class="gutter">' + gutter + '</td>' +
-    '<td class="line-data"><pre>' + ld + '</pre></td>' +
+    '<td id="line-data" class="line-data"><pre>' + ld + '</pre></td>' +
     '</tr></table>';
   xmlDisplayArea.innerHTML = htm;
 
@@ -225,3 +229,49 @@ xmlTextArea.addEventListener('click', function() {
   xmlPathArea.innerText = path;
   searchXpath(path);
 });
+
+xmlDisplayArea.onclick = function(event) {
+  var el = event.target;
+  var isText = false;
+
+  // Clicked element can be span or div
+  if (el.nodeName == 'SPAN') {
+    if (el.className.indexOf('p') != -1) {
+      // This is a tag
+      el = el.parentNode;
+    } else if (el.className == '' || el.className.indexOf('mal') != -1) {
+      isText = true;
+    }
+
+    // Go parent till parent node is div
+    while (el.nodeName != 'DIV') {
+      el = el.parentNode;
+    }
+  }
+
+  // If div, we need it to have class name line
+  if (el.nodeName == 'DIV' && el.className.indexOf('line') != -1) {
+    xmlContent = document.getElementById('line-data');
+    var xmlText = xmlContent.textContent;
+    var nodeData = {};
+    nodeData.nodeStart = xmlText.indexOf(el.textContent);
+    nodeData.nodeEnd = nodeData.nodeStart + el.textContent.length - 1;
+    nodeData.isNode = !isText;
+
+    var path = getXpath(xmlText, nodeData);
+
+    if (path.length == 0) {
+      xmlPathArea.innerText = 'Invalid Location';
+      return;
+    }
+
+    path = '/' + path.join('/');
+
+    if (!nodeData.isNode) {
+      path += '/text()';
+    }
+
+    xmlPathArea.innerText = path;
+    searchXpath(path);
+  }
+};
