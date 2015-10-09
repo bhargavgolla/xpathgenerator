@@ -1,4 +1,9 @@
-@import 'reset.css';
+table, td {
+  border-collapse: collapse;
+  border-spacing: 0;
+  vertical-align: baseline;
+  margin: 0;
+}
 section.layout .content {
   width: 720px;
   min-height: 100%;
